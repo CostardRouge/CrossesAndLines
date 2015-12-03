@@ -34,7 +34,7 @@ class CoolViewController: UIViewController {
             let crossFrame = CGRect(origin: crossPosition, size: crossSize)
             let cross = Cross(frame: crossFrame)
             cross.color = UIColor.random
-            //cross.color = UIColor.blueColor()
+            //cross.color = UIColor.redColor()
             cross.lineWidth = crossStrokeWidth
             cross.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.0)
             
