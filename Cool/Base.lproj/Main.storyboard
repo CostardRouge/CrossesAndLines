@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <scenes>
+        <!--Cool View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="CoolViewController" customModule="Cool" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3sL-qN-uj0" customClass="BezierPathsView" customModule="Cool" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Eu1-ki-Cdm" appends="YES" id="k99-gk-3zP"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="3sL-qN-uj0" secondAttribute="trailing" id="b1G-mI-tph"/>
+                            <constraint firstItem="3sL-qN-uj0" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="dIZ-ay-nJL"/>
+                            <constraint firstItem="3sL-qN-uj0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="nao-jY-Sfw"/>
+                            <constraint firstItem="3sL-qN-uj0" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="uLT-0I-PGD"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="coolSceneView" destination="3sL-qN-uj0" id="gG1-ng-iXh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="Eu1-ki-Cdm">
+                    <connections>
+                        <action selector="handlePanGesture:" destination="BYZ-38-t0r" id="fTK-FL-R77"/>
+                    </connections>
+                </panGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="139" y="389"/>
+        </scene>
+    </scenes>
+</document>
