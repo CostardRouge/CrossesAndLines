@@ -23,12 +23,15 @@ class CoolViewController: UIViewController {
         super.viewDidLoad()
         
         createRandomCrosses()
+        
+        print(coolSceneView.frame)
+        print(coolSceneView.bounds)
     }
     
     func createRandomCrosses() {
         for _ in 0...crossesCount {
-            let maxX = Int(coolSceneView.bounds.width) - 20
-            let maxY = Int(coolSceneView.bounds.height) - 20
+            let maxX = Int(view.bounds.width)
+            let maxY = Int(view.bounds.height)
             
             let crossPosition = CGPoint(x: CGFloat.random(maxX), y: CGFloat.random(maxY))
             let crossFrame = CGRect(origin: crossPosition, size: crossSize)
@@ -49,7 +52,10 @@ class CoolViewController: UIViewController {
         for touche in touches {
             let locationInView = touche.locationInView(coolSceneView)
             
-    traceLinesAround(locationInView)
+            
+            //print(locationInView)
+            
+            traceLinesAround(locationInView, extraRange: 300)
         }
     }
     
@@ -58,19 +64,19 @@ class CoolViewController: UIViewController {
         case .Began: break
         case .Changed:
             let gesturePoint = gestureRecognizer.locationInView(coolSceneView)
-            traceLinesAround(gesturePoint)
+            traceLinesAround(gesturePoint, extraRange: 300)
         case .Ended: break
         default: break
         }
     
     }
     
-    func traceLinesAround(point: CGPoint) {
+    func traceLinesAround(point: CGPoint, extraRange: CGFloat = 150) {
         struct StaticHolder {
             static var oldLinePathnames = [String]()
         }
         
-        if let nearestCrosses = getCrossesNearOf(point) {
+        if let nearestCrosses = getCrossesNearOf(point, extraRange: extraRange) {
             
             // Better way to do that
             for oldLinePathname in StaticHolder.oldLinePathnames {
@@ -117,9 +123,7 @@ class CoolViewController: UIViewController {
 }
 
 
-
 // MARK: - Extensions
-
 private extension CGFloat {
     static func random(max: Int) -> CGFloat {
         return CGFloat(arc4random() % UInt32(max))
