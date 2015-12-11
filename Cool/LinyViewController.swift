@@ -149,4 +149,13 @@ extension Array {
         let randomIndex = Int(rand()) % count
         return self[randomIndex]
     }
+    
+    func randomElements(time:Int = 10) -> [Element] {
+        var elements = [Element]()
+        
+        for _ in 0...time {
+            elements.append(self.sample)
+        }
+        return elements
+    }
 }

@@ -20,24 +20,26 @@ struct BoxColors {
 }
 
 class CubyViewController: UIViewController {
-    var boxesOnHeight = 60
-    
     var boxsStrokeWidth: CGFloat = 1.0
     var boxSize: CGSize = CGSize(width: 10.0, height: 10.0)
     var boxes = [Box]()
     
-    static let timer = NSTimer()
+    // Animations
+    var timer: NSTimer?
+    var duration: Double = 3
+    var delay: Double = 1
+    var forever: Bool = true
+    var allTogether: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         createRandomBoxes()
         
-        
         // About box animations :
         // forever | one time, separatly | all together, static duration | random duration
         // static delay | random delay
-        animateBoxColors(duration: 1.0, delay: 0.0)
+        animateBoxes()
     }
     
     func createRandomBoxes() {
@@ -57,7 +59,6 @@ class CubyViewController: UIViewController {
                 let x_position = x * Int(boxSize.width)
                 let y_position = y * Int(boxSize.height)
                 
-                
                 let boxPosition = CGPoint(x: x_position, y: y_position)
                 let boxFrame = CGRect(origin: boxPosition, size: boxSize)
                 let box = Box(frame: boxFrame)
@@ -75,50 +76,44 @@ class CubyViewController: UIViewController {
         }
     }
     
-    func animateBoxColors(duration duration: Double, delay: Double, forever: Bool = true, allTogether: Bool = true) {
+    func animateBoxes() {
+        
+        print("animateBoxes")
         
         if allTogether {
             for box in boxes {
                 
                 UIView.animateWithDuration(duration, delay: delay, options: .CurveLinear, animations: { () -> Void in
                     box.backgroundColor = BoxColors.red
-                    }) { (finished) -> Void in
+                    }, completion: { (finished) -> Void in
                         if finished {
-                            //self.animateBoxColors(duration: duration, delay: delay)
+                            // finished
                         }
-                }
+                })
+            }
+        }
+        else {
+            
+            let randomElementsCount = boxes.count > 0 ? boxes.count / 1 : 0
+            
+            for box in boxes.randomElements(randomElementsCount) {
+                UIView.animateWithDuration(duration, delay: delay, options: .CurveLinear, animations: { () -> Void in
+                    box.backgroundColor = BoxColors.red
+                    }, completion: { (finished) -> Void in
+                        if finished {
+                            // finished
+                        }
+                })
             }
         }
         
         if forever {
             if allTogether {
-                weak var wSelf = self
-                
-                let action = ObjectWrapper(value: {() -> () in
-                    wSelf?.animateBoxColors(duration: duration, delay: delay, forever: forever, allTogether: allTogether)
-                })
-                
-                performSelector("runClosure:", withObject: action, afterDelay: 1.0)
+                performSelector("animateBoxes", withObject: nil, afterDelay: duration + delay)
             }
-            
+            else {
+                performSelector("animateBoxes", withObject: nil, afterDelay: duration + delay)
+            }
         }
     }
-    
-    func runClosure(closure: AnyObject){
-        if let close = closure as? ObjectWrapper<() -> ()> {
-            close
-            print(close)
-        }
-    }
-
 }
-
-class ObjectWrapper<T> {
-    var value:T
-    
-    init(value:T) {
-        self.value = value
-    }
-}
-
-
