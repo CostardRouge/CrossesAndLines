@@ -136,3 +136,17 @@ extension UIColor {
         }
     }
 }
+
+extension Array {
+    var sample : Element { return isEmpty ? self as! Element : self[Int(arc4random_uniform(UInt32(count)))] }
+    
+    func randomElement() -> Element? {
+        let index = Int(arc4random_uniform(UInt32(self.count)))
+        return self[index]
+    }
+    
+    func random() -> Element {
+        let randomIndex = Int(rand()) % count
+        return self[randomIndex]
+    }
+}

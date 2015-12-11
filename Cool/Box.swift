@@ -11,6 +11,9 @@ import UIKit
 @IBDesignable
 class Box: UIView {
 
+    var x: Int?
+    var y: Int?
+    
     @IBInspectable var lineWidth: CGFloat = 0 { didSet { setNeedsDisplay() } }
     @IBInspectable var color: UIColor = UIColor.blueColor() {
         didSet {
