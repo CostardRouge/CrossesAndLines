@@ -8,24 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		240D64DC1C1094D8009FBBFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D64DB1C1094D8009FBBFC /* AppDelegate.swift */; };
-		240D64DE1C1094D8009FBBFC /* CoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D64DD1C1094D8009FBBFC /* CoolViewController.swift */; };
+		240D64DE1C1094D8009FBBFC /* LinyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D64DD1C1094D8009FBBFC /* LinyViewController.swift */; };
 		240D64E11C1094D8009FBBFC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 240D64DF1C1094D8009FBBFC /* Main.storyboard */; };
 		240D64E31C1094D8009FBBFC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 240D64E21C1094D8009FBBFC /* Assets.xcassets */; };
 		240D64E61C1094D8009FBBFC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 240D64E41C1094D8009FBBFC /* LaunchScreen.storyboard */; };
 		240D64EE1C109770009FBBFC /* Cross.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D64ED1C109770009FBBFC /* Cross.swift */; };
 		240D64F01C10CF4B009FBBFC /* BezierPathsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D64EF1C10CF4B009FBBFC /* BezierPathsView.swift */; };
+		FEC09A401C1B1BC700318AFE /* CubyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC09A3F1C1B1BC700318AFE /* CubyViewController.swift */; };
+		FEC09A421C1B1C9100318AFE /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC09A411C1B1C9100318AFE /* Box.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		240D64D81C1094D8009FBBFC /* Cool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		240D64DB1C1094D8009FBBFC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		240D64DD1C1094D8009FBBFC /* CoolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoolViewController.swift; sourceTree = "<group>"; };
+		240D64DD1C1094D8009FBBFC /* LinyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinyViewController.swift; sourceTree = "<group>"; };
 		240D64E01C1094D8009FBBFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		240D64E21C1094D8009FBBFC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		240D64E51C1094D8009FBBFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		240D64E71C1094D8009FBBFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		240D64ED1C109770009FBBFC /* Cross.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cross.swift; sourceTree = "<group>"; };
 		240D64EF1C10CF4B009FBBFC /* BezierPathsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierPathsView.swift; sourceTree = "<group>"; };
+		FEC09A3F1C1B1BC700318AFE /* CubyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CubyViewController.swift; sourceTree = "<group>"; };
+		FEC09A411C1B1C9100318AFE /* Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,9 +63,11 @@
 			isa = PBXGroup;
 			children = (
 				240D64DB1C1094D8009FBBFC /* AppDelegate.swift */,
-				240D64DD1C1094D8009FBBFC /* CoolViewController.swift */,
+				240D64DD1C1094D8009FBBFC /* LinyViewController.swift */,
+				FEC09A3F1C1B1BC700318AFE /* CubyViewController.swift */,
 				240D64EF1C10CF4B009FBBFC /* BezierPathsView.swift */,
 				240D64ED1C109770009FBBFC /* Cross.swift */,
+				FEC09A411C1B1C9100318AFE /* Box.swift */,
 				240D64DF1C1094D8009FBBFC /* Main.storyboard */,
 				240D64E21C1094D8009FBBFC /* Assets.xcassets */,
 				240D64E41C1094D8009FBBFC /* LaunchScreen.storyboard */,
@@ -143,7 +149,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				240D64F01C10CF4B009FBBFC /* BezierPathsView.swift in Sources */,
-				240D64DE1C1094D8009FBBFC /* CoolViewController.swift in Sources */,
+				FEC09A401C1B1BC700318AFE /* CubyViewController.swift in Sources */,
+				240D64DE1C1094D8009FBBFC /* LinyViewController.swift in Sources */,
+				FEC09A421C1B1C9100318AFE /* Box.swift in Sources */,
 				240D64EE1C109770009FBBFC /* Cross.swift in Sources */,
 				240D64DC1C1094D8009FBBFC /* AppDelegate.swift in Sources */,
 			);
@@ -297,6 +305,7 @@
 				240D64EC1C1094D8009FBBFC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
