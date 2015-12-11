@@ -13,7 +13,7 @@ class Cross: UIView {
     
     @IBInspectable var lineWidth: CGFloat = 1 { didSet { setNeedsDisplay() } }
     @IBInspectable var color: UIColor = UIColor.blueColor() { didSet { setNeedsDisplay() } }
-
+    
     override func drawRect(rect: CGRect) {
         let path = UIBezierPath()
         path.lineWidth = lineWidth
@@ -30,6 +30,6 @@ class Cross: UIView {
         
         color.set()
         path.stroke()
-}
-
+    }
+    
 }

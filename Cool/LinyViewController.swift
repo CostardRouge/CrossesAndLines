@@ -1,6 +1,6 @@
 //
-//  CoolViewController.swift
-//  Cool
+//  LinyViewController.swift
+//  Liny
 //
 //  Created by Steeve is working on 03/12/15.
 //  Copyright © 2015 Steeve is working. All rights reserved.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CoolViewController: UIViewController {
+class LinyViewController: UIViewController {
     
     @IBOutlet weak var coolSceneView: BezierPathsView!
     
@@ -26,11 +26,11 @@ class CoolViewController: UIViewController {
         
         createRandomCrosses()
         
-        print(coolSceneView.frame)
-        print(coolSceneView.bounds)
+        print("view did load")
     }
     
     func createRandomCrosses() {
+        print("createRandomCrosses")
         for _ in 0...crossesCount {
             let maxX = Int(view.bounds.width)
             let maxY = Int(view.bounds.height)
@@ -43,7 +43,7 @@ class CoolViewController: UIViewController {
             cross.lineWidth = crossStrokeWidth
             cross.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.0)
             
-            coolSceneView.addSubview(cross)
+            coolSceneView?.addSubview(cross)
             crosses.append(cross)
         }
     }
@@ -114,21 +114,17 @@ class CoolViewController: UIViewController {
         }
         return result.count > 0 ? result : nil
     }
-    
-    override func prefersStatusBarHidden() -> Bool {
-        return true
-    }
 }
 
 
 // MARK: - Extensions
-private extension CGFloat {
+extension CGFloat {
     static func random(max: Int) -> CGFloat {
         return CGFloat(arc4random() % UInt32(max))
     }
 }
 
-private extension UIColor {
+extension UIColor {
     class var random: UIColor {
         switch arc4random()%5 {
         case 0: return UIColor.greenColor()
