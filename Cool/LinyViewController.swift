@@ -25,12 +25,10 @@ class LinyViewController: UIViewController {
         super.viewDidLoad()
         
         createRandomCrosses()
-        
-        print("view did load")
+        coolSceneView?.multipleTouchEnabled = true
     }
     
     func createRandomCrosses() {
-        print("createRandomCrosses")
         for _ in 0...crossesCount {
             let maxX = Int(view.bounds.width)
             let maxY = Int(view.bounds.height)
@@ -51,46 +49,53 @@ class LinyViewController: UIViewController {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesBegan(touches, withEvent: event)
         
-        for touche in touches {
-            let locationInView = touche.locationInView(coolSceneView)
-            traceLinesAround(locationInView, range: lineRange)
-        }
+        let pointsInView = touches.map { $0.locationInView(coolSceneView) }
+        traceLinesAround(pointsInView, range: lineRange)
     }
     
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        super.touchesBegan(touches, withEvent: event)
+        
+        let pointsInView = touches.map { $0.locationInView(coolSceneView) }
+        traceLinesAround(pointsInView, range: lineRange)
+    }
+    
+    //UNUSED
     @IBAction func handlePanGesture(gestureRecognizer: UIPanGestureRecognizer) {
         switch gestureRecognizer.state {
         case .Began: break
         case .Changed:
             let gesturePoint = gestureRecognizer.locationInView(coolSceneView)
-            traceLinesAround(gesturePoint, range: lineRange)
+            traceLinesAround([gesturePoint], range: lineRange)
         case .Ended: break
         default: break
         }
-    
     }
     
-    func traceLinesAround(point: CGPoint, range: CGFloat = 150) {
+    func traceLinesAround(points: [CGPoint], range: CGFloat = 150) {
         struct StaticHolder {
             static var oldLinePathnames = [String]()
         }
         
-        if let nearestCrosses = getCrossesNearOf(point, range: range) {
-            
-            // Better way to do that
-            for oldLinePathname in StaticHolder.oldLinePathnames {
-                self.coolSceneView.setPath(nil, named: oldLinePathname)
-            }
-            StaticHolder.oldLinePathnames.removeAll()
-            
-            for cross in nearestCrosses {
-                let path = UIBezierPath()
-                path.moveToPoint(cross.center)
-                path.addLineToPoint(point)
-                path.lineWidth = attachmentStrokeWidth
-                let pathname = "\(cross.hashValue)"
-                self.coolSceneView.setPath(path, named: pathname, preferedColor: cross.color)
-                
-                StaticHolder.oldLinePathnames.append(pathname)
+        // Better way to do that
+        for oldLinePathname in StaticHolder.oldLinePathnames {
+            self.coolSceneView.setPath(nil, named: oldLinePathname)
+        }
+        StaticHolder.oldLinePathnames.removeAll()
+        
+        for point in points {
+            print(point)
+            if let nearestCrosses = getCrossesNearOf(point, range: range) {
+                for cross in nearestCrosses {
+                    let path = UIBezierPath()
+                    path.moveToPoint(cross.center)
+                    path.addLineToPoint(point)
+                    path.lineWidth = attachmentStrokeWidth
+                    let pathname = "\(cross.hashValue)"
+                    self.coolSceneView.setPath(path, named: pathname, preferedColor: cross.color)
+                    
+                    StaticHolder.oldLinePathnames.append(pathname)
+                }
             }
         }
     }
