@@ -12,6 +12,7 @@ class ExperimentCell: UICollectionViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var image: UIImageView!
     
     var experiment: Experiment? {
         didSet {
@@ -23,6 +24,12 @@ class ExperimentCell: UICollectionViewCell {
         if let loadedExperiment = experiment {
             nameLabel?.text = loadedExperiment.name
             descriptionLabel?.text = loadedExperiment.description
+            
+            let imageNamed = UIImage(named: loadedExperiment.name)
+            if imageNamed != nil {
+                image.image = imageNamed
+            }
+            
         }
     }
     

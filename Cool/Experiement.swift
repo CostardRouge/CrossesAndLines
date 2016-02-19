@@ -21,7 +21,11 @@ class Experiment {
     let creationDate: NSDate?
     let lastVersionDate: NSDate?
     
-    init(name name_: String, description description_: String, author author_: String? = nil) {
+    // tmp
+    let segueIdentifier: String?
+    let thumbnailImageNamed: String?
+    
+    init(name name_: String, description description_: String, author author_: String? = nil, segueIdentifier segue_dentifier: String? = nil) {
         name = name_
         author = author_
         description = description_
@@ -32,5 +36,9 @@ class Experiment {
         
         creationDate = nil
         lastVersionDate = nil
+        
+        // tmp
+        segueIdentifier = segue_dentifier
+        thumbnailImageNamed = nil
     }
 }

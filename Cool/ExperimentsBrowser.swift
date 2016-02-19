@@ -15,14 +15,20 @@ private let sectionFooterIdentifier = "sectionFooter"
 class ExperimentsBrowser: UICollectionViewController {
     
     let graphicsExperiments: [Experiment] = [
-        Experiment(name: "Lignes", description: "Lines traced around crosses"),
-        Experiment(name: "Carrés", description: "Random animated squares"),
+        Experiment(name: "Lignes", description: "Lines traced around crosses", segueIdentifier: "showLinyExperiment"),
+        Experiment(name: "Square", description: "Random animated squares", segueIdentifier: "showCubyExperiment"),
+        Experiment(name: "Aléatoire", description: "Actions without rationnal reasons", segueIdentifier: "showRandomyExperiment"),
+        Experiment(name: "Parrallèle", description: "Tirez un trait dans l'espace", segueIdentifier: "showTracyExperiment"),
+        
         Experiment(name: "Bulles", description: "Interactive colored bubbles"),
         
         Experiment(name: "Connexion", description: "Connecting some lines"),
         Experiment(name: "Gravité", description: "Objects are attracted where you tap"),
         Experiment(name: "Anomalie", description: "Sometimes there are conflicts"),
-        Experiment(name: "Permutation", description: "Movements are continuous stills anywyay")
+        Experiment(name: "Permutation", description: "Movements are continuous stills anywyay"),
+        
+        
+        Experiment(name: "Caché", description: "Things aren't always visible")
     ]
     
     let UIExperiments: [Experiment] = [
@@ -66,6 +72,20 @@ class ExperimentsBrowser: UICollectionViewController {
         let keys = [String](experiments.keys)
         let key = keys[section]
         return key
+    }
+    
+    override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+        print("willRotateToInterfaceOrientation")
+        
+        print("isLandscape : \(toInterfaceOrientation.isLandscape)")
+        print("isPortrait : \(toInterfaceOrientation.isPortrait)")
+        //print(duration)
+    }
+    
+    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+        print("didRotateFromInterfaceOrientation")
+        print("isLandscape : \(fromInterfaceOrientation.isLandscape)")
+        print("isPortrait : \(fromInterfaceOrientation.isPortrait)")
     }
 
     override func viewDidLoad() {
@@ -116,11 +136,14 @@ class ExperimentsBrowser: UICollectionViewController {
         
         if let experimentCell = cell as? ExperimentCell {
             experimentCell.experiment = experimentForIndexPath(indexPath)
+            
+            let imageHeight = experimentCell.bounds.height - experimentCell.descriptionLabel!.bounds.height - 10.0 - 5.0
+            experimentCell.image.layer.cornerRadius = imageHeight / 2
             return experimentCell
         }
         return cell
     }
-    
+
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         
         var reusableView = UICollectionReusableView()
@@ -152,6 +175,24 @@ class ExperimentsBrowser: UICollectionViewController {
     // MARK: UICollectionViewDelegate
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+
+        if let experiment = experimentForIndexPath(indexPath) {
+            if let experimentSegueIdentifier = experiment.segueIdentifier {
+                performSegueWithIdentifier(experimentSegueIdentifier, sender: nil)
+            }
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        //
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        
+        //let defaultSize: CGSize = (collectionViewLayout as! UICollectionViewFlowLayout).itemSize
+        
+        let screenWidth = view.frame.width
+        return CGSize(width: screenWidth / 2, height: screenWidth / 2)
     }
 
     /*
