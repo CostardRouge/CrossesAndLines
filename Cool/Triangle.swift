@@ -8,6 +8,7 @@
 
 import UIKit
 
+@IBDesignable
 class Triangle: UIView {
 
     @IBInspectable var lineWidth: CGFloat = 1 { didSet { setNeedsDisplay() } }
@@ -35,5 +36,4 @@ class Triangle: UIView {
         color.set()
         path.stroke()
     }
-
 }
