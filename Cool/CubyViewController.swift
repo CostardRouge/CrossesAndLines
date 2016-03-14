@@ -27,15 +27,15 @@ struct BoxColors {
     //static let colorVariant:[CGFloat] = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
 }
 
-class CubyViewController: UIViewController {
+class CubyViewController: UIViewController, Experiment {
     
     var boxsStrokeWidth: CGFloat = 1.0
-    var boxSize: CGSize = CGSize(width: 10.0, height: 10.0)
+    var boxSize: CGSize = CGSize(width: 20.0, height: 20.0)
     var boxes = [Box]()
     
     // Animations
     var timer: NSTimer?
-    var duration: Double = 0.1
+    var duration: Double = 0.5
     var delay: Double = 0
     var forever: Bool = true
     var allTogether: Bool = true
@@ -91,8 +91,6 @@ class CubyViewController: UIViewController {
     var redColor = true
     
     func animateBoxes() {
-        
-        
         
         if allTogether {
             for box in boxes {
@@ -156,5 +154,24 @@ class CubyViewController: UIViewController {
         
         //sender.scale = 1
     }
+    
+    // MARK: ExperimentProtocol
+    static func getExperimentName() -> String {
+        return "Square"
+    }
+    
+    static func getExperimentAuthorName() -> String? {
+        return "CostardRouge"
+    }
+    
+    static func getExperimentDescription() -> String? {
+        return "Random animated squares"
+    }
+    
+    static func getExperimentThumbnailImage() -> UIImage? {
+        return UIImage(named: "Square")
+    }
+    
+    static var preferedLabelColorForCell = UIColor.whiteColor()
     
 }

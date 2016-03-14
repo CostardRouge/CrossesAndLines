@@ -8,9 +8,7 @@
 
 import UIKit
 
-class RandomyViewController: UIViewController {
-    
-    @IBOutlet weak var coolSceneView: BezierPathsView!
+class RandomyViewController: UIViewController, Experiment {
     
     var shapesCount: Int = 50
     var shapeStrokeWidth: CGFloat = 1.5
@@ -37,12 +35,30 @@ class RandomyViewController: UIViewController {
             shape.lineWidth = shapeStrokeWidth
             shape.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.0)
             
-            // 
             let degrees = CGFloat.random(360)
             shape.transform = CGAffineTransformMakeRotation(degrees * CGFloat( M_PI/180))
             
-            coolSceneView?.addSubview(shape)
+            self.view.addSubview(shape)
             shapes.append(shape)
         }
     }
+    
+    // MARK: ExperimentProtocol
+    static func getExperimentName() -> String {
+        return "Randomy"
+    }
+    
+    static func getExperimentAuthorName() -> String? {
+        return "CostardRouge"
+    }
+    
+    static func getExperimentDescription() -> String? {
+        return "Actions without rationnal reasons"
+    }
+    
+    static func getExperimentThumbnailImage() -> UIImage? {
+        return UIImage(named: "Square")
+    }
+    
+    static var preferedLabelColorForCell = UIColor.whiteColor()
 }
