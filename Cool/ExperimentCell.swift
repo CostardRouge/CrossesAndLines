@@ -14,18 +14,18 @@ class ExperimentCell: UICollectionViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var image: UIImageView!
     
-    var experiment: Experiment? {
+    var experimentDetail: ExperimentDetail? {
         didSet {
             configureCell()
         }
     }
     
     func configureCell() {
-        if let loadedExperiment = experiment {
-            nameLabel?.text = loadedExperiment.name
-            descriptionLabel?.text = loadedExperiment.description
+        if let loadedExperimentDetail = experimentDetail {
+            nameLabel?.text = loadedExperimentDetail.name
+            descriptionLabel?.text = loadedExperimentDetail.description
             
-            let imageNamed = UIImage(named: loadedExperiment.name)
+            let imageNamed = UIImage(named: loadedExperimentDetail.name)
             if imageNamed != nil {
                 image.image = imageNamed
             }
