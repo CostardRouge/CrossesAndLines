@@ -14,33 +14,39 @@ private let sectionFooterIdentifier = "sectionFooter"
 
 class ExperimentsBrowser: UICollectionViewController {
     
-    let graphicsExperiments: [Experiment] = [
-        Experiment(name: "Lignes", description: "Lines traced around crosses", segueIdentifier: "showLinyExperiment"),
-        Experiment(name: "Square", description: "Random animated squares", segueIdentifier: "showCubyExperiment"),
-        Experiment(name: "Aléatoire", description: "Actions without rationnal reasons", segueIdentifier: "showRandomyExperiment"),
-        Experiment(name: "Parrallèle", description: "Tirez un trait dans l'espace", segueIdentifier: "showTracyExperiment"),
+    let graphicsExperiments: [Experiment.Type] = [
+        LinyViewController.self,
+        CubyViewController.self,
+        NetyViewController.self,
+        RandomyViewController.self
         
-        Experiment(name: "Bulles", description: "Interactive colored bubbles"),
+        //Experiment(name: "Lignes", description: "Lines traced around crosses", segueIdentifier: "showLinyExperiment"),
+        //Experiment(name: "Square", description: "Random animated squares", segueIdentifier: "showCubyExperiment"),
+        //Experiment(name: "Aléatoire", description: "Actions without rationnal reasons", segueIdentifier: "showRandomyExperiment"),
+        //Experiment(name: "Parrallèle", description: "Tirez un trait dans l'espace", segueIdentifier: "showTracyExperiment"),
+        //Experiment(name: "PasDeNom", description: "Pas de description", segueIdentifier: "showNoNameExperiment"),
+        //Experiment(name: "Nety", description: "Pas de description", segueIdentifier: "showNetyExperiment"),
         
-        Experiment(name: "Connexion", description: "Connecting some lines"),
-        Experiment(name: "Gravité", description: "Objects are attracted where you tap"),
-        Experiment(name: "Anomalie", description: "Sometimes there are conflicts"),
-        Experiment(name: "Permutation", description: "Movements are continuous stills anywyay"),
+        //Experiment(name: "Bulles", description: "Interactive colored bubbles"),
+        //Experiment(name: "Connexion", description: "Connecting some lines"),
+        //Experiment(name: "Gravité", description: "Objects are attracted where you tap"),
+        //Experiment(name: "Anomalie", description: "Sometimes there are conflicts"),
+        //Experiment(name: "Permutation", description: "Movements are continuous stills anywyay"),
         
         
-        Experiment(name: "Caché", description: "Things aren't always visible")
+        //Experiment(name: "Caché", description: "Things aren't always visible")
     ]
     
-    let UIExperiments: [Experiment] = [
-        Experiment(name: "Bouttons", description: "Lines around stuff"),
-        Experiment(name: "Leviers", description: "Cubes around stuff"),
-        Experiment(name: "Tuiles", description: "Cubes around stuff")
+    let UIExperiments: [Experiment.Type] = [
+        //Experiment(name: "Bouttons", description: "Lines around stuff"),
+        //Experiment(name: "Leviers", description: "Cubes around stuff"),
+        //Experiment(name: "Tuiles", description: "Cubes around stuff")
     ]
     
-    var experiments: [String: [Experiment]]
+    var experiments: [String: [Experiment.Type]]
     
     required init(coder: NSCoder) {
-        experiments = [String: [Experiment]]()
+        experiments = [String: [Experiment.Type]]()
         
         experiments["Graphics"] = graphicsExperiments
         experiments["Interfaces"] = UIExperiments
@@ -48,7 +54,7 @@ class ExperimentsBrowser: UICollectionViewController {
         super.init(coder: coder)!
     }
     
-    func experimentForIndexPath(indexPath: NSIndexPath) -> Experiment? {
+    func experimentForIndexPath(indexPath: NSIndexPath) -> Experiment.Type? {
         let keys = [String](experiments.keys)
         let key = keys[indexPath.section]
         
@@ -58,7 +64,7 @@ class ExperimentsBrowser: UICollectionViewController {
         return nil
     }
     
-    func experimentsForSection(section: Int) -> [Experiment]? {
+    func experimentsForSection(section: Int) -> [Experiment.Type]? {
         let keys = [String](experiments.keys)
         let key = keys[section]
         
@@ -118,13 +124,10 @@ class ExperimentsBrowser: UICollectionViewController {
     // MARK: UICollectionViewDataSource
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return experiments.count
     }
 
-
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
         if let experimentsAtSection = experimentsForSection(section) {
             return experimentsAtSection.count
         }
@@ -135,7 +138,18 @@ class ExperimentsBrowser: UICollectionViewController {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath)
         
         if let experimentCell = cell as? ExperimentCell {
-            experimentCell.experiment = experimentForIndexPath(indexPath)
+            if let experimentViewController = experimentForIndexPath(indexPath) {
+                let experimentDetail = ExperimentDetail()
+                experimentDetail.name = experimentViewController.getExperimentName()
+                experimentDetail.description = experimentViewController.getExperimentDescription()
+                experimentDetail.author = experimentViewController.getExperimentAuthorName()
+                
+                experimentCell.experimentDetail = experimentDetail
+                
+                
+                experimentCell.nameLabel?.textColor = experimentViewController
+                .preferedLabelColorForCell
+            }
             
             let imageHeight = experimentCell.bounds.height - experimentCell.descriptionLabel!.bounds.height - 10.0 - 5.0
             experimentCell.image.layer.cornerRadius = imageHeight / 2
@@ -176,9 +190,10 @@ class ExperimentsBrowser: UICollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
 
-        if let experiment = experimentForIndexPath(indexPath) {
-            if let experimentSegueIdentifier = experiment.segueIdentifier {
-                performSegueWithIdentifier(experimentSegueIdentifier, sender: nil)
+        if let experimentViewController = experimentForIndexPath(indexPath) {
+            
+            if let vc = experimentViewController.init() as? UIViewController {
+                navigationController?.pushViewController(vc, animated: true)
             }
         }
     }
