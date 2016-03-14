@@ -91,8 +91,6 @@ class TracyViewController: UIViewController {
         // get the angle
         var angle = startPoint.angleToPoint(endPoint)
         
-       
-        
         let atanValue = atan2((endPoint.x - startPoint.x), (endPoint.y - startPoint.y))
         let lineAngle = Double(atanValue * 180) / M_PI
         
