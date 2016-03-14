@@ -32,7 +32,7 @@
                     </connections>
                 </pinchGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2224" y="1577"/>
+            <point key="canvasLocation" x="2002" y="115"/>
         </scene>
         <!--Liny-->
         <scene sceneID="aXw-Vc-T5W">
@@ -54,10 +54,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="xSh-Qy-3Cr" firstAttribute="top" secondItem="rHc-Kq-8XU" secondAttribute="bottom" id="FpF-Ob-8oy"/>
-                            <constraint firstItem="rHc-Kq-8XU" firstAttribute="top" secondItem="DGE-1X-VVS" secondAttribute="bottom" id="Lla-Zn-5ak"/>
-                            <constraint firstAttribute="trailing" secondItem="rHc-Kq-8XU" secondAttribute="trailing" id="Uc5-Bc-rjp"/>
-                            <constraint firstItem="rHc-Kq-8XU" firstAttribute="leading" secondItem="7JT-Ns-rPb" secondAttribute="leading" id="Yuk-eS-69g"/>
+                            <constraint firstAttribute="trailing" secondItem="rHc-Kq-8XU" secondAttribute="trailing" id="P5T-6I-PZr"/>
+                            <constraint firstItem="rHc-Kq-8XU" firstAttribute="leading" secondItem="7JT-Ns-rPb" secondAttribute="leading" id="dJt-4s-6Rv"/>
+                            <constraint firstItem="rHc-Kq-8XU" firstAttribute="top" secondItem="DGE-1X-VVS" secondAttribute="bottom" id="hal-bx-SLn"/>
+                            <constraint firstItem="xSh-Qy-3Cr" firstAttribute="top" secondItem="rHc-Kq-8XU" secondAttribute="bottom" id="jvK-9k-KBq"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Liny" id="5Lx-zH-7Hb"/>
@@ -67,7 +67,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0su-u2-S05" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2224" y="883"/>
+            <point key="canvasLocation" x="1996" y="811"/>
         </scene>
         <!--My iOS tranning-->
         <scene sceneID="jkx-xd-gH2">
@@ -344,6 +344,8 @@
                         <segue destination="BYZ-38-t0r" kind="show" identifier="showCubyExperiment" id="PPp-GK-acA"/>
                         <segue destination="pcj-Mp-mi9" kind="show" identifier="showRandomyExperiment" id="6if-Q7-oMM"/>
                         <segue destination="OhR-Lv-AUw" kind="show" identifier="showTracyExperiment" id="jeL-JM-X3L"/>
+                        <segue destination="wjR-Aa-dsj" kind="show" identifier="showNoNameExperiment" id="fwA-VZ-EQK"/>
+                        <segue destination="6Za-N2-dF3" kind="show" identifier="showNetyExperiment" id="Oig-hf-Vrq"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PJx-va-FPg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -377,29 +379,13 @@
                     <view key="view" contentMode="scaleToFill" id="bq6-eL-Dch" userLabel="View" customClass="BezierPathsView" customModule="Cool" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7y9-Ue-ybW" customClass="BezierPathsView" customModule="Cool" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <gestureRecognizers/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="7y9-Ue-ybW" secondAttribute="trailing" id="4Om-Xy-rS8"/>
-                            <constraint firstItem="vze-4b-iag" firstAttribute="top" secondItem="7y9-Ue-ybW" secondAttribute="bottom" id="eb7-7C-4bo"/>
-                            <constraint firstItem="7y9-Ue-ybW" firstAttribute="top" secondItem="1My-nG-DK9" secondAttribute="bottom" id="rK5-11-2q3"/>
-                            <constraint firstItem="7y9-Ue-ybW" firstAttribute="leading" secondItem="bq6-eL-Dch" secondAttribute="leading" id="uGo-bi-c1s"/>
-                        </constraints>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Randomy" id="6Kd-Kb-gAa"/>
-                    <connections>
-                        <outlet property="coolSceneView" destination="7y9-Ue-ybW" id="OHA-26-sd5"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QxT-5u-Gal" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2224" y="2251"/>
+            <point key="canvasLocation" x="1996" y="1469"/>
         </scene>
         <!--Tracy-->
         <scene sceneID="SYd-0Z-eOq">
@@ -434,7 +420,79 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wok-xn-q2F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1540" y="2895"/>
+            <point key="canvasLocation" x="1304" y="2443"/>
+        </scene>
+        <!--Pas de nom-->
+        <scene sceneID="aq2-Ab-ymO">
+            <objects>
+                <viewController id="wjR-Aa-dsj" customClass="NoNameViewController" customModule="Cool" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kzj-2c-Zgk"/>
+                        <viewControllerLayoutGuide type="bottom" id="Iho-ak-9cr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0H6-Ny-E0k">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Pas de nom" id="Gj6-1R-DGO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dbf-fE-d4k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1996" y="2118"/>
+        </scene>
+        <!--Nety-->
+        <scene sceneID="28t-Ya-sMR">
+            <objects>
+                <viewController id="6Za-N2-dF3" userLabel="Nety" customClass="NetyViewController" customModule="Cool" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rg4-Zj-tbZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="207-uC-Q8P"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="IHI-Bz-MLh" userLabel="View" customClass="BezierPathsView" customModule="Cool" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yGD-9a-Mf2" customClass="BezierPathsView" customModule="Cool" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="207-uC-Q8P" firstAttribute="top" secondItem="yGD-9a-Mf2" secondAttribute="bottom" id="Gfm-fP-KTP"/>
+                            <constraint firstItem="yGD-9a-Mf2" firstAttribute="top" secondItem="rg4-Zj-tbZ" secondAttribute="bottom" id="KFW-dQ-bHo"/>
+                            <constraint firstItem="yGD-9a-Mf2" firstAttribute="leading" secondItem="IHI-Bz-MLh" secondAttribute="leading" id="aWk-pR-aiN"/>
+                            <constraint firstAttribute="trailing" secondItem="yGD-9a-Mf2" secondAttribute="trailing" id="xgh-mi-cUH"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Nety" id="UOb-AV-bXI"/>
+                    <connections>
+                        <outlet property="coolSceneView" destination="yGD-9a-Mf2" id="7Zt-Af-1XI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vaq-SG-o6n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2002" y="-551"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="R2g-ul-THT">
+            <objects>
+                <viewController id="3nl-V5-ofY" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rZM-4I-Pjn"/>
+                        <viewControllerLayoutGuide type="bottom" id="uk0-f0-cpQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fgp-ca-o9a">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JPR-ZC-zI8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2778" y="-563"/>
         </scene>
     </scenes>
     <resources>

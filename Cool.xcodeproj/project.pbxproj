@@ -16,13 +16,18 @@
 		240D64F01C10CF4B009FBBFC /* BezierPathsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240D64EF1C10CF4B009FBBFC /* BezierPathsView.swift */; };
 		FE0214491C6B75F9005FCBEF /* TracyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0214481C6B75F9005FCBEF /* TracyViewController.swift */; };
 		FE02144B1C6CA8AB005FCBEF /* EphyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE02144A1C6CA8AB005FCBEF /* EphyViewController.swift */; };
+		FE042C051C8AC9F400799282 /* NoNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE042C041C8AC9F400799282 /* NoNameViewController.swift */; };
+		FE042C071C8ACB0200799282 /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE042C061C8ACB0200799282 /* Circle.swift */; };
 		FE27E4B11C2C65A200000E6A /* ExperimentsBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE27E4B01C2C65A200000E6A /* ExperimentsBrowser.swift */; };
-		FE27E4B31C2C65D500000E6A /* Experiement.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE27E4B21C2C65D500000E6A /* Experiement.swift */; };
+		FE27E4B31C2C65D500000E6A /* ExperiementDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE27E4B21C2C65D500000E6A /* ExperiementDetail.swift */; };
 		FE27E4B61C2C70EA00000E6A /* ExperimentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE27E4B51C2C70EA00000E6A /* ExperimentCell.swift */; };
 		FE27E4B81C2D5E2500000E6A /* ExperimentCollectionSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE27E4B71C2D5E2500000E6A /* ExperimentCollectionSectionHeaderView.swift */; };
 		FE27E4BA1C2D614B00000E6A /* ExperimentCollectionSectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE27E4B91C2D614B00000E6A /* ExperimentCollectionSectionFooterView.swift */; };
 		FE3659C81C5F1D860092E4E5 /* RandomyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3659C71C5F1D860092E4E5 /* RandomyViewController.swift */; };
 		FE3659CC1C5F1F5C0092E4E5 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3659CB1C5F1F5C0092E4E5 /* Triangle.swift */; };
+		FEA5634C1C933260006CC8FB /* NetyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA5634B1C933260006CC8FB /* NetyViewController.swift */; };
+		FEA5634F1C95A08F006CC8FB /* ExperimentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA5634E1C95A08F006CC8FB /* ExperimentProtocol.swift */; };
+		FEA563521C95A0DD006CC8FB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA563511C95A0DD006CC8FB /* Extensions.swift */; };
 		FEC09A401C1B1BC700318AFE /* CubyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC09A3F1C1B1BC700318AFE /* CubyViewController.swift */; };
 		FEC09A421C1B1C9100318AFE /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC09A411C1B1C9100318AFE /* Box.swift */; };
 /* End PBXBuildFile section */
@@ -39,13 +44,18 @@
 		240D64EF1C10CF4B009FBBFC /* BezierPathsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierPathsView.swift; sourceTree = "<group>"; };
 		FE0214481C6B75F9005FCBEF /* TracyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracyViewController.swift; sourceTree = "<group>"; };
 		FE02144A1C6CA8AB005FCBEF /* EphyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EphyViewController.swift; sourceTree = "<group>"; };
+		FE042C041C8AC9F400799282 /* NoNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoNameViewController.swift; sourceTree = "<group>"; };
+		FE042C061C8ACB0200799282 /* Circle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
 		FE27E4B01C2C65A200000E6A /* ExperimentsBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperimentsBrowser.swift; sourceTree = "<group>"; };
-		FE27E4B21C2C65D500000E6A /* Experiement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Experiement.swift; sourceTree = "<group>"; };
+		FE27E4B21C2C65D500000E6A /* ExperiementDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperiementDetail.swift; sourceTree = "<group>"; };
 		FE27E4B51C2C70EA00000E6A /* ExperimentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperimentCell.swift; sourceTree = "<group>"; };
 		FE27E4B71C2D5E2500000E6A /* ExperimentCollectionSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperimentCollectionSectionHeaderView.swift; sourceTree = "<group>"; };
 		FE27E4B91C2D614B00000E6A /* ExperimentCollectionSectionFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperimentCollectionSectionFooterView.swift; sourceTree = "<group>"; };
 		FE3659C71C5F1D860092E4E5 /* RandomyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomyViewController.swift; sourceTree = "<group>"; };
 		FE3659CB1C5F1F5C0092E4E5 /* Triangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
+		FEA5634B1C933260006CC8FB /* NetyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetyViewController.swift; sourceTree = "<group>"; };
+		FEA5634E1C95A08F006CC8FB /* ExperimentProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperimentProtocol.swift; sourceTree = "<group>"; };
+		FEA563511C95A0DD006CC8FB /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FEC09A3F1C1B1BC700318AFE /* CubyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CubyViewController.swift; sourceTree = "<group>"; };
 		FEC09A411C1B1C9100318AFE /* Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,6 +91,8 @@
 			isa = PBXGroup;
 			children = (
 				FE3659C91C5F1F100092E4E5 /* Shapes */,
+				FEA563501C95A0B4006CC8FB /* Extensions */,
+				FEA5634D1C95A035006CC8FB /* Protocols */,
 				FE27E4B41C2C68B600000E6A /* Models */,
 				FE27E4AF1C2C647D00000E6A /* Experiments */,
 				FE27E4AE1C2C646D00000E6A /* Selector */,
@@ -109,10 +121,12 @@
 			isa = PBXGroup;
 			children = (
 				240D64DD1C1094D8009FBBFC /* LinyViewController.swift */,
+				FEC09A3F1C1B1BC700318AFE /* CubyViewController.swift */,
+				FEA5634B1C933260006CC8FB /* NetyViewController.swift */,
 				FE0214481C6B75F9005FCBEF /* TracyViewController.swift */,
 				FE02144A1C6CA8AB005FCBEF /* EphyViewController.swift */,
 				FE3659C71C5F1D860092E4E5 /* RandomyViewController.swift */,
-				FEC09A3F1C1B1BC700318AFE /* CubyViewController.swift */,
+				FE042C041C8AC9F400799282 /* NoNameViewController.swift */,
 			);
 			name = Experiments;
 			sourceTree = "<group>";
@@ -120,7 +134,7 @@
 		FE27E4B41C2C68B600000E6A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				FE27E4B21C2C65D500000E6A /* Experiement.swift */,
+				FE27E4B21C2C65D500000E6A /* ExperiementDetail.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -129,10 +143,27 @@
 			isa = PBXGroup;
 			children = (
 				240D64ED1C109770009FBBFC /* Cross.swift */,
+				FE042C061C8ACB0200799282 /* Circle.swift */,
 				FE3659CB1C5F1F5C0092E4E5 /* Triangle.swift */,
 				FEC09A411C1B1C9100318AFE /* Box.swift */,
 			);
 			name = Shapes;
+			sourceTree = "<group>";
+		};
+		FEA5634D1C95A035006CC8FB /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				FEA5634E1C95A08F006CC8FB /* ExperimentProtocol.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		FEA563501C95A0B4006CC8FB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FEA563511C95A0DD006CC8FB /* Extensions.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,20 +238,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE042C071C8ACB0200799282 /* Circle.swift in Sources */,
 				FE02144B1C6CA8AB005FCBEF /* EphyViewController.swift in Sources */,
 				FE27E4B81C2D5E2500000E6A /* ExperimentCollectionSectionHeaderView.swift in Sources */,
+				FE042C051C8AC9F400799282 /* NoNameViewController.swift in Sources */,
 				FE3659CC1C5F1F5C0092E4E5 /* Triangle.swift in Sources */,
 				FE0214491C6B75F9005FCBEF /* TracyViewController.swift in Sources */,
 				240D64F01C10CF4B009FBBFC /* BezierPathsView.swift in Sources */,
 				FEC09A401C1B1BC700318AFE /* CubyViewController.swift in Sources */,
 				FE3659C81C5F1D860092E4E5 /* RandomyViewController.swift in Sources */,
 				FE27E4B61C2C70EA00000E6A /* ExperimentCell.swift in Sources */,
-				FE27E4B31C2C65D500000E6A /* Experiement.swift in Sources */,
+				FE27E4B31C2C65D500000E6A /* ExperiementDetail.swift in Sources */,
 				240D64DE1C1094D8009FBBFC /* LinyViewController.swift in Sources */,
 				FEC09A421C1B1C9100318AFE /* Box.swift in Sources */,
 				FE27E4BA1C2D614B00000E6A /* ExperimentCollectionSectionFooterView.swift in Sources */,
 				240D64EE1C109770009FBBFC /* Cross.swift in Sources */,
+				FEA563521C95A0DD006CC8FB /* Extensions.swift in Sources */,
+				FEA5634F1C95A08F006CC8FB /* ExperimentProtocol.swift in Sources */,
 				FE27E4B11C2C65A200000E6A /* ExperimentsBrowser.swift in Sources */,
+				FEA5634C1C933260006CC8FB /* NetyViewController.swift in Sources */,
 				240D64DC1C1094D8009FBBFC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
