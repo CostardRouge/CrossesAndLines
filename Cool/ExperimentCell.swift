@@ -23,13 +23,7 @@ class ExperimentCell: UICollectionViewCell {
     func configureCell() {
         if let loadedExperimentDetail = experimentDetail {
             nameLabel?.text = loadedExperimentDetail.name
-            descriptionLabel?.text = loadedExperimentDetail.description
-            
-            let imageNamed = UIImage(named: loadedExperimentDetail.name)
-            if imageNamed != nil {
-                image.image = imageNamed
-            }
-            
+            descriptionLabel?.text = loadedExperimentDetail.description 
         }
     }
     

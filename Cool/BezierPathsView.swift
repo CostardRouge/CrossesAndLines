@@ -10,7 +10,6 @@ import UIKit
 
 class BezierPathsView: UIView
 {
-    
     private var bezierPaths = [String:(path: UIBezierPath?, color: UIColor)]()
     
     func setPath(path: UIBezierPath?, named name: String, preferedColor: UIColor = UIColor.blackColor()) {

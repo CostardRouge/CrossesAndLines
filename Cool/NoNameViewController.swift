@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NoNameViewController: UIViewController {
+class NoNameViewController: UIViewController, Experiment {
     
     var shapesCount: Int = 75
     var shapeStrokeWidth: CGFloat = 1.0
@@ -20,7 +20,21 @@ class NoNameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //createRandomShapes()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
         createRandomShapes()
+        title = NoNameViewController .getExperimentName()
+        view.backgroundColor = UIColor.blackColor()
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        super.touchesBegan(touches, withEvent: event)
+        
+        //createRandomShapes()
     }
     
     func createRandomShapes() {
@@ -32,6 +46,7 @@ class NoNameViewController: UIViewController {
             let shape = Circle(frame: shapeFrame)
             
             shape.color = UIColor.random
+            shape.color = BoxColors.red
             shape.lineWidth = shapeStrokeWidth
             shape.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.0)
             
@@ -42,4 +57,23 @@ class NoNameViewController: UIViewController {
         }
     }
 
+    
+    // MARK: ExperimentProtocol
+    static func getExperimentName() -> String {
+        return "Cercles"
+    }
+    
+    static func getExperimentAuthorName() -> String? {
+        return "CostardRouge"
+    }
+    
+    static func getExperimentDescription() -> String? {
+        return "Presque une spirale"
+    }
+    
+    static func getExperimentThumbnailImage() -> UIImage? {
+        return UIImage(named: "PasDeNom")
+    }
+    
+    static var preferedLabelColorForCell = UIColor.whiteColor()
 }

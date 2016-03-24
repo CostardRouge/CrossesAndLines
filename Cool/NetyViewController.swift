@@ -10,14 +10,15 @@ import UIKit
 
 class NetyViewController: UIViewController, Experiment {
     
-    @IBOutlet weak var coolSceneView: BezierPathsView!
-    
-    var crossSize: CGSize = CGSize(width: 5.0, height: 5.0)
+    var crossSize: CGSize = CGSize(width: 10, height: 10)
     var crossStrokeWidth: CGFloat = 1.0
-    var crosses = [Cross]()
     
     var crossHeightOffset: CGFloat = 6.0
     var crossWidthOffset: CGFloat = 10.0
+    
+    var lineRange: CGFloat = 15
+    
+    var fingers = [Int:CGPoint]()
     
     var crossesOnWidth: Int {
         get {
@@ -31,20 +32,6 @@ class NetyViewController: UIViewController, Experiment {
         }
     }
     
-    var xOffsetCentering: CGFloat {
-        get {
-            let totalWidthLength = CGFloat(crossesOnWidth) * crossWidthOffset
-            return (coolSceneView.bounds.width - totalWidthLength) / 2
-        }
-    }
-    
-    var yOffsetCentering: CGFloat {
-        get {
-            let totalHeightLength = CGFloat(crossesOnHeight) * crossHeightOffset
-            return (coolSceneView.bounds.height - totalHeightLength) / 2
-        }
-    }
-    
     func windowHeight() -> CGFloat {
         return UIScreen.mainScreen().bounds.height
     }
@@ -55,29 +42,11 @@ class NetyViewController: UIViewController, Experiment {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         disposeTheCrosses()
         
-        view.backgroundColor = UIColor.redColor()
+        view.backgroundColor = UIColor.whiteColor()
         title = NetyViewController.getExperimentName()
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        //disposeTheCrosses(UIColor.redColor())
-    }
-    
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesBegan(touches, withEvent: event)
-        
-        print("coolSceneView.bounds.width \(coolSceneView?.bounds.width)")
-        print("coolSceneView.bounds.height \(coolSceneView?.bounds.height)")
-        
-        
-        print("view.window?.frame.width \(view.window?.frame.width)")
-        print("view.window?.frame.height \(view.window?.frame.height)")
-
     }
     
     func disposeTheCrosses(crossesPreferedColor: UIColor? = nil) {
@@ -92,19 +61,92 @@ class NetyViewController: UIViewController, Experiment {
                 let crossFrame = CGRect(origin: crossPosition, size: crossSize)
                 let cross = Cross(frame: crossFrame)
                 cross.haveToBeVerticallyDrawn = (x % 4 == 1 ? false : true)
+                //cross.haveToBeVerticallyDrawn = true
                 cross.color = crossesPreferedColor ?? UIColor.blueColor()
                 cross.lineWidth = crossStrokeWidth
                 cross.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.0)
                 
-                coolSceneView?.addSubview(cross)
-                //crosses.append(cross)
+                view.addSubview(cross)
+                
+                if x % 4 == 1 {
+                    cross.color = UIColor.redColor()
+                }
             }
         }
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        super.touchesBegan(touches, withEvent: event)
+        
+        for touche in touches {
+            let point = touche.locationInView(view)
+            fingers.updateValue(point, forKey: touche.hashValue)
+            
+            if let crosses = getCrossesNearOf(point, range: lineRange) {
+                for cross in crosses {
+                    cross.color = UIColor.purpleColor()
+                    cross.haveToBeVerticallyDrawn = false
+                }
+            }
+        }
+    }
+    
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        super.touchesBegan(touches, withEvent: event)
+        
+        for touche in touches {
+            let point = touche.locationInView(view)
+            fingers.updateValue(point, forKey: touche.hashValue)
+            
+            if let crosses = getCrossesNearOf(point, range: lineRange) {
+                for cross in crosses {
+                    cross.color = UIColor.greenColor()
+                    
+                    //cross.backgroundColor = UIColor.purpleColor()
+                    cross.haveToBeVerticallyDrawn = false
+                }
+            }
+        }
+    }
+    
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
+        for touche in touches {
+            if let index = fingers.indexForKey(touche.hashValue) {
+                // Removing old traced lines for this finger
+                //removeLinesForThisFinger(touche.hashValue)
+                
+                // Forgeting about this finger
+                fingers.removeAtIndex(index)
+            }
+        }
+    }
+    
+    func getCrossesNearOf(point: CGPoint, range: CGFloat = 150) -> [Cross]? {
+        var result = [Cross]()
+        
+        for subview in view.subviews {
+            if let cross = subview as? Cross {
+                let crossFrame = cross.frame
+                
+                let x = cross.center.x - range / 2
+                let y = cross.center.y - range / 2
+                let w = crossFrame.width + range
+                let h = crossFrame.height + range
+                
+                let crossRange = CGRectMake(x, y, w, h)
+                
+                if CGRectContainsPoint(crossRange, point) {
+                    result.append(cross)
+                }
+            }
+        }
+        return result.count > 0 ? result : nil
     }
 
     // MARK: ExperimentProtocol
     static func getExperimentName() -> String {
-        return "Nety"
+        return "Fillet"
     }
     
     static func getExperimentAuthorName() -> String? {
@@ -116,7 +158,7 @@ class NetyViewController: UIViewController, Experiment {
     }
     
     static func getExperimentThumbnailImage() -> UIImage? {
-        return UIImage(named: "Square")
+        return UIImage(named: "Fillet")
     }
     
     static var preferedLabelColorForCell = UIColor.blackColor()

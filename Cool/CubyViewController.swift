@@ -16,6 +16,13 @@ struct BoxColors {
         }
     }
     
+    static var purple: UIColor {
+        get {
+            let redValue = colorVariant.sample
+            return UIColor(red: redValue, green: 0, blue: 166/255, alpha: 1)
+        }
+    }
+    
     static var blue: UIColor {
         get {
             let blueValue = colorVariant.sample
@@ -23,7 +30,7 @@ struct BoxColors {
         }
     }
     
-    static let colorVariant:[CGFloat] = [0.125, 0.25, 0.5, 0.75, 1]
+    static private let colorVariant:[CGFloat] = [0.125, 0.25, 0.5, 0.75, 1]
     //static let colorVariant:[CGFloat] = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
 }
 
@@ -35,8 +42,8 @@ class CubyViewController: UIViewController, Experiment {
     
     // Animations
     var timer: NSTimer?
-    var duration: Double = 0.5
-    var delay: Double = 0
+    var duration: Double = 1
+    var delay: Double = 0.2
     var forever: Bool = true
     var allTogether: Bool = true
     
@@ -44,6 +51,8 @@ class CubyViewController: UIViewController, Experiment {
         super.viewDidLoad()
         
         createRandomBoxes()
+        
+        title = CubyViewController.getExperimentName()
         
         // About box animations :
         // forever | one time, separatly | all together, static duration | random duration
@@ -77,7 +86,8 @@ class CubyViewController: UIViewController, Experiment {
                 let box = Box(frame: boxFrame)
                 
                 // Create a random value for red
-                box.color = BoxColors.red
+                //box.color = BoxColors.red
+                box.color = BoxColors.purple
                 box.y = y
                 box.x = x
                 
@@ -99,7 +109,7 @@ class CubyViewController: UIViewController, Experiment {
 
                     //box.backgroundColor = self.redColor == true ? BoxColors.blue : BoxColors.red
                     //self.redColor = !self.redColor
-                    box.backgroundColor = BoxColors.red
+                    box.backgroundColor = BoxColors.purple
                     
                     }, completion: { (finished) -> Void in
                         if finished {
@@ -157,7 +167,7 @@ class CubyViewController: UIViewController, Experiment {
     
     // MARK: ExperimentProtocol
     static func getExperimentName() -> String {
-        return "Square"
+        return "Carré"
     }
     
     static func getExperimentAuthorName() -> String? {

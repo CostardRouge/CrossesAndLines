@@ -19,6 +19,9 @@ class RandomyViewController: UIViewController, Experiment {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        title = RandomyViewController.getExperimentName()
+        view.backgroundColor = UIColor.blackColor()
         createRandomShapes()
     }
     
@@ -57,7 +60,7 @@ class RandomyViewController: UIViewController, Experiment {
     }
     
     static func getExperimentThumbnailImage() -> UIImage? {
-        return UIImage(named: "Square")
+        return UIImage(named: "Randomy")
     }
     
     static var preferedLabelColorForCell = UIColor.whiteColor()

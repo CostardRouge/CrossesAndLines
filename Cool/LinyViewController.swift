@@ -10,11 +10,17 @@ import UIKit
 
 class LinyViewController: UIViewController, Experiment {
     
-    @IBOutlet weak var coolSceneView: BezierPathsView!
+    var coolSceneView:BezierPathsView? = nil
     
     var crossesCount: Int = 250
     var crossStrokeWidth: CGFloat = 1.0
     var attachmentStrokeWidth: CGFloat = 1.0
+    var preferedColorForCrosses: UIColor? = nil {
+        didSet {
+            createBezierPathsView()
+            createRandomCrosses()
+        }
+    }
     
     var crossSize: CGSize = CGSize(width: 5.0, height: 5.0)
     var crosses = [Cross]()
@@ -27,8 +33,66 @@ class LinyViewController: UIViewController, Experiment {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = LinyViewController.getExperimentName()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Color", style: UIBarButtonItemStyle.Plain, target: self, action: "showColorSelectionAlertView")
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        view.backgroundColor = UIColor.blackColor()
+        createBezierPathsView()
         createRandomCrosses()
-        coolSceneView?.multipleTouchEnabled = true
+    }
+    
+    func showColorSelectionAlertView() {
+        print("showColorSelectionAlertView")
+        
+        let colorMenu = UIAlertController(title: nil, message: "Choose a color", preferredStyle: .ActionSheet)
+        
+        let redColorChoice = UIAlertAction(title: "Red", style: .Default) { (alert: UIAlertAction) -> Void in
+            self.preferedColorForCrosses = UIColor.redColor()
+        }
+        
+        let blueColorChoice = UIAlertAction(title: "Blue", style: .Default) { (alert: UIAlertAction) -> Void in
+            self.preferedColorForCrosses = UIColor.blueColor()
+        }
+        
+        let whiteColorChoice = UIAlertAction(title: "White", style: .Default) { (alert: UIAlertAction) -> Void in
+            self.preferedColorForCrosses = UIColor.whiteColor()
+        }
+        
+        let randomColorChoice = UIAlertAction(title: "Random one", style: .Default) { (alert: UIAlertAction) -> Void in
+            self.preferedColorForCrosses = nil
+        }
+        
+        let cancelAction = UIAlertAction(title: "Meh.", style: .Cancel) { (alert: UIAlertAction) -> Void in
+            // nothing to do but believe
+        }
+        
+        colorMenu.addAction(blueColorChoice)
+        colorMenu.addAction(redColorChoice)
+        colorMenu.addAction(randomColorChoice)
+        colorMenu.addAction(whiteColorChoice)
+        colorMenu.addAction(cancelAction)
+        
+        presentViewController(colorMenu, animated: true, completion: nil)
+    }
+    
+    func applyCorrectBezierPathsViewConstraints() {
+        if let loadedCoolSceneView = coolSceneView {
+            let trailingContraint = NSLayoutConstraint(item: loadedCoolSceneView, attribute: NSLayoutAttribute.Trailing, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Trailing, multiplier: 1.0, constant: 0.0)
+            view.addConstraint(trailingContraint)
+            
+            let leadingContraint = NSLayoutConstraint(item: loadedCoolSceneView, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Leading, multiplier: 1.0, constant: 0.0)
+            view.addConstraint(leadingContraint)
+            
+            let bottomContraint = NSLayoutConstraint(item: loadedCoolSceneView, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Bottom, multiplier: 1.0, constant: 0.0)
+            view.addConstraint(bottomContraint)
+            
+            let topContraint = NSLayoutConstraint(item: loadedCoolSceneView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: 0.0)
+            view.addConstraint(topContraint)
+        }
     }
     
     func createRandomCrosses() {
@@ -39,14 +103,27 @@ class LinyViewController: UIViewController, Experiment {
             let crossPosition = CGPoint(x: CGFloat.random(maxX), y: CGFloat.random(maxY))
             let crossFrame = CGRect(origin: crossPosition, size: crossSize)
             let cross = Cross(frame: crossFrame)
-            cross.color = UIColor.random
-            //cross.color = UIColor.redColor()
+            cross.color = preferedColorForCrosses ?? UIColor.random
             cross.lineWidth = crossStrokeWidth
             cross.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.0)
             
             coolSceneView?.addSubview(cross)
             crosses.append(cross)
         }
+    }
+    
+    func createBezierPathsView() {
+        // Oh, it that a recreate call ?
+        if coolSceneView != nil {
+            coolSceneView!.removeFromSuperview()
+        }
+        
+        coolSceneView = BezierPathsView()
+        coolSceneView?.multipleTouchEnabled = true
+        coolSceneView?.backgroundColor = UIColor.blackColor()
+        coolSceneView?.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(coolSceneView!)
+        applyCorrectBezierPathsViewConstraints()
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -92,7 +169,7 @@ class LinyViewController: UIViewController, Experiment {
         if let idx = oldLinePathnames.indexForKey(toucheHashValue) {
             let linesTracedForThisTouch = oldLinePathnames[idx]
             for linePathnames in linesTracedForThisTouch.1 {
-                self.coolSceneView.setPath(nil, named: linePathnames)
+                self.coolSceneView?.setPath(nil, named: linePathnames)
             }
             oldLinePathnames.removeAtIndex(idx)
         }
@@ -109,7 +186,7 @@ class LinyViewController: UIViewController, Experiment {
                 path.addLineToPoint(point)
                 path.lineWidth = attachmentStrokeWidth
                 let pathname = "\(cross.hashValue + fingerHashValue)"
-                self.coolSceneView.setPath(path, named: pathname, preferedColor: cross.color)
+                self.coolSceneView?.setPath(path, named: pathname, preferedColor: cross.color)
                 
                 linePathnames!.append(pathname)
             }
@@ -151,7 +228,7 @@ class LinyViewController: UIViewController, Experiment {
     }
     
     static func getExperimentThumbnailImage() -> UIImage? {
-        return UIImage(named: "Liny")
+        return UIImage(named: "Lignes")
     }
     
     static var preferedLabelColorForCell = UIColor.whiteColor()

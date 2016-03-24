@@ -18,7 +18,10 @@ class ExperimentsBrowser: UICollectionViewController {
         LinyViewController.self,
         CubyViewController.self,
         NetyViewController.self,
-        RandomyViewController.self
+        RandomyViewController.self,
+        EphyViewController.self,
+        NoNameViewController.self,
+        TracyViewController.self        
         
         //Experiment(name: "Lignes", description: "Lines traced around crosses", segueIdentifier: "showLinyExperiment"),
         //Experiment(name: "Square", description: "Random animated squares", segueIdentifier: "showCubyExperiment"),
@@ -145,6 +148,7 @@ class ExperimentsBrowser: UICollectionViewController {
                 experimentDetail.author = experimentViewController.getExperimentAuthorName()
                 
                 experimentCell.experimentDetail = experimentDetail
+                experimentCell.image.image = experimentViewController.getExperimentThumbnailImage()
                 
                 
                 experimentCell.nameLabel?.textColor = experimentViewController

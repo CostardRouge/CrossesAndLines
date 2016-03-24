@@ -8,9 +8,9 @@
 
 import UIKit
 
-class TracyViewController: UIViewController {
+class TracyViewController: UIViewController, Experiment {
 
-    @IBOutlet weak var coolSceneView: BezierPathsView!
+    var coolSceneView = BezierPathsView()
     var attachmentStrokeWidth: CGFloat = 1.0
     
     var fingers = [Int:CGPoint]()
@@ -19,8 +19,30 @@ class TracyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        coolSceneView?.multipleTouchEnabled = true
+        title = TracyViewController.getExperimentName()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        view.backgroundColor = UIColor.blackColor()
+        
+        coolSceneView.multipleTouchEnabled = true
+        coolSceneView.backgroundColor = UIColor.blackColor()
+        coolSceneView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(coolSceneView)
+        
+        let trailingContraint = NSLayoutConstraint(item: coolSceneView, attribute: NSLayoutAttribute.Trailing, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Trailing, multiplier: 1.0, constant: 0.0)
+        view.addConstraint(trailingContraint)
+        
+        let leadingContraint = NSLayoutConstraint(item: coolSceneView, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Leading, multiplier: 1.0, constant: 0.0)
+        view.addConstraint(leadingContraint)
+        
+        let bottomContraint = NSLayoutConstraint(item: coolSceneView, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Bottom, multiplier: 1.0, constant: 0.0)
+        view.addConstraint(bottomContraint)
+        
+        let topContraint = NSLayoutConstraint(item: coolSceneView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: 0.0)
+        view.addConstraint(topContraint)
     }
 
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -89,30 +111,28 @@ class TracyViewController: UIViewController {
         linePathnames.append(pathname)
         
         // get the angle
-        var angle = startPoint.angleToPoint(endPoint)
+        let angle = startPoint.angleToPoint(endPoint)
+        print(angle)
         
-        let atanValue = atan2((endPoint.x - startPoint.x), (endPoint.y - startPoint.y))
-        let lineAngle = Double(atanValue * 180) / M_PI
+        // get the point ?
+        let endX = (cos(angle) * 50) + endPoint.x
+        let endY = (sin(angle) * 50) + endPoint.y
         
-        print("angle : \(angle)")
-        print("lineAngle : \(lineAngle)")
-        
-        // get the final point ?
-        let endX = cos(lineAngle) * 50 + Double(endPoint.y)
-        let endY = sin(lineAngle) * 50 + Double(endPoint.x)
         let finalPoint = CGPoint(x: endX, y: endY)
         
         // second line
         let secondPath = UIBezierPath()
-        secondPath.moveToPoint(endPoint)
+        secondPath.moveToPoint(startPoint)
         secondPath.addLineToPoint(finalPoint)
         secondPath.lineWidth = attachmentStrokeWidth * 3
+        
         let secondPathname = "\(fingerHashValue * 2)"
         
         self.coolSceneView.setPath(secondPath, named: secondPathname, preferedColor: UIColor.blueColor())
         linePathnames.append(secondPathname)
         return linePathnames
     }
+
     
     func removeLinesForThisFinger(toucheHashValue: Int) {
         
@@ -124,7 +144,28 @@ class TracyViewController: UIViewController {
             oldLinePathnames.removeAtIndex(idx)
         }
     }
+    
+    // MARK: ExperimentProtocol
+    static func getExperimentName() -> String {
+        return "Tracy"
+    }
+    
+    static func getExperimentAuthorName() -> String? {
+        return "CostardRouge"
+    }
+    
+    static func getExperimentDescription() -> String? {
+        return "Description not found yet"
+    }
+    
+    static func getExperimentThumbnailImage() -> UIImage? {
+        return UIImage(named: "Tracy")
+    }
+    
+    static var preferedLabelColorForCell = UIColor.whiteColor()
 }
+
+
 
 extension CGPoint {
     func angleToPoint(comparisonPoint: CGPoint) -> CGFloat {
